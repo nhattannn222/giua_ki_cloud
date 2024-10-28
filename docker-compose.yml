@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: thienthuan
+      MYSQL_DATABASE: tht
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: thienthuan
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
+
